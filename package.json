@@ -1,0 +1,29 @@
+{
+  "name": "shoppe-fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec babel-node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vungdx/shoppe-fullstack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vungdx/shoppe-fullstack/issues"
+  },
+  "homepage": "https://github.com/vungdx/shoppe-fullstack#readme",
+  "dependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "uuid": "^8.3.0"
+  }
+}

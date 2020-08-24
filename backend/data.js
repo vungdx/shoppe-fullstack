@@ -27,7 +27,7 @@ export default {
             rating: 5,
             numReviews: 19,
             numProductSold: 120,
-            countInStock: 0
+            countInStock: 10
         },
         {
             id: uuidv4(),
@@ -41,7 +41,7 @@ export default {
             rating: 4,
             numReviews: 120,
             numProductSold: 134,
-            countInStock: 8
+            countInStock: 0
         },
         {
             id: uuidv4(),
