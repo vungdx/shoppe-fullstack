@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeItemCart, updateQtyInCart } from '../actions/cartActions';
+import { addToCart, removeItemCart, cartUpdateQty } from '../actions/cartActions';
 import { Link } from 'react-router-dom';
 
 
@@ -11,8 +11,6 @@ function CartScreen(props) {
     const { cartItems } = cart;
     const productId = props.match.params.id;
     const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
-    // const [qty, setQty] = useState(props.location.search ? Number(props.location.search.split("=")[1]) : 1);
-
     const dispatch = useDispatch();
     useEffect(() => {
         if (productId) {
@@ -25,33 +23,14 @@ function CartScreen(props) {
         dispatch(removeItemCart(productId))
     }
 
-
-    // // Quantity num
-    const handleQtyCartBuy = (quantity, countInStock) => {
-        // console.log("Count in stock", countInStock);
-        // if (quantity > 0 && quantity < countInStock) {
-        //     setQty(quantity)
-        // }
+    // Update quantity
+    const [quantity, setQuantity] = useState(1);
+    const handleUpdateQty = (value, countInStock, id) => {
+        if (value > 0 && value <= countInStock) {
+            setQuantity(value);
+        }
+        dispatch(cartUpdateQty(value, id));
     }
-    // const handleQtyInc = (countInStock) => {
-    //     if (qty >= countInStock) {
-    //         return;
-    //     }
-    //     else {
-    //         setQty(qty + 1);
-    //     }
-    // }
-
-    // const handleQtyDec = () => {
-    //     if (qty <= 0) {
-    //         return;
-    //     }
-    //     else {
-    //         setQty(qty - 1);
-    //     }
-    // }
-
-
 
     return (
         <div className="grid__row padding-top ">
@@ -80,8 +59,8 @@ function CartScreen(props) {
                 {
                     cartItems.length === 0 ? <div>Giỏ hàng của bạn trống</div>
                         :
-                        cartItems.map(item =>
-                            <li key={item.id} className="cart-item-content">
+                        cartItems.map((item, index) =>
+                            <li key={index} className="cart-item-content">
                                 <div className="grid__column-6">
                                     <Link to={"/products/" + item.id} className="cart-item-content-product">
                                         <img className="cart-item-content-img"
@@ -96,9 +75,9 @@ function CartScreen(props) {
                                         </div>
                                         <div className="grid__column-6-4">
                                             <div className="cart-item-content-left-qty quantity-buy">
-                                                <button onClick={() => handleQtyCartBuy(item.qty - 1, item.countInStock)} className="quantity-num-dec">-</button>
-                                                <span className="quantity-num">{item.qty}</span>
-                                                <button onClick={() => handleQtyCartBuy(item.qty + 1, item.countInStock)} className="quantity-num-inc">+</button>
+                                                <button onClick={() => handleUpdateQty(item.qty - 1, item.countInStock, item.id)} className="quantity-num-dec">-</button>
+                                                <span className="quantity-num">{item.qty !== quantity ? item.qty : quantity}</span>
+                                                <button onClick={() => handleUpdateQty(item.qty + 1, item.countInStock, item.id)} className="quantity-num-inc">+</button>
                                             </div>
                                         </div>
                                         <div className="grid__column-6-4">
@@ -119,7 +98,7 @@ function CartScreen(props) {
                 </div>
             </ul>
 
-        </div>
+        </div >
     );
 }
 

@@ -34,11 +34,9 @@ export const removeItemCart = (productId) => async (dispatch, getState) => {
     Cookie.set("cartItems", JSON.stringify(cartItems))
 }
 
-// export const updateQtyInCart = (product, quantity) => {
-//     dispatch({
-//         type: CART_UPDATE_QTY,
-//         payload: {
-//             product, quantity
-//         }
-//     })
-// }
+export const cartUpdateQty = (quantity, id) => async (dispatch) => {
+    dispatch({
+        type: CART_UPDATE_QTY,
+        payload: { quantity, id }
+    })
+}
