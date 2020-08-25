@@ -95,8 +95,8 @@ function CartScreen(props) {
                         )
                 }
                 <div className="cart-item-content-checkout">
-                    <span className="cart-item-content-total-price-title">Tổng tiền hàng (4 sản phẩm):</span>
-                    <span className="cart-item-content-total-price-num">340.000₫</span>
+                    <span className="cart-item-content-total-price-title">Tổng tiền hàng ({cartItems.map(x => x.qty).reduce((x, y) => x + y) + ' sản phẩm'}) :</span>
+                    <span className="cart-item-content-total-price-num">{cartItems.map(x => x.qty * x.newPrice).reduce((x, y) => x + y)}</span>
                     <button className="btn btn--primary">Mua hàng</button>
                 </div>
             </ul>
