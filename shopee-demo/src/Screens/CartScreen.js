@@ -28,9 +28,12 @@ function CartScreen(props) {
     const handleUpdateQty = (value, countInStock, id) => {
         if (value > 0 && value <= countInStock) {
             setQuantity(value);
+        } else {
+            return;
         }
         dispatch(cartUpdateQty(value, id));
     }
+    console.log(quantity);
 
     return (
         <div className="grid__row padding-top ">
