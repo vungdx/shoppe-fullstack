@@ -5,6 +5,7 @@ import App from './App';
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
 import store from './store';
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
   <Provider store={store}>
