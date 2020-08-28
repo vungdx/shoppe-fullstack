@@ -50,13 +50,151 @@ function Search(props) {
                     <i className="header__search-btn-icon fas fa-search" />
                 </button>
             </div>
+
             <div className="header__cart">
                 <div className="header__cart-wrapper">
                     <i className="header_cart-icon fas fa-shopping-cart" />
                     <span className="header_cart-mount">3</span>
-                    <div className="header__cart-list ">
+                    <div className="header__cart-list">
+                        {/* no-cart */}
                         <img src="./images/no-cart.jpeg" alt="no-cart" className="header__cart-img-no-cart" />
                         <span className="header__cart-list-label">Chưa có sản phẩm</span>
+                        {/* has-cart  */}
+                        <h4 className="header__cart-heading">Sản phẩm đã thêm</h4>
+                        <ul className="header__cart-list-list">
+
+                            <li className="header__cart-list-item">
+                                <img src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-space-select-2019_1_1_3_2_2.png" alt="" className="header__cart-img" />
+                                <div className="header__cart-item-info">
+                                    <div className="header__cart-item-head">
+                                        <h5 className="header__cart-item-name">Năm tháng ấy, vì một người nói thích màu
+                                        xanh mà đem lòng yêu luôn cả bầu trời</h5>
+                                        <div className="header__cart-item-price-wrapper">
+                                            <span className="header__cart-item-price">24.500.000 ₫</span>
+                                            <span className="header__cart-item-multiply">x</span>
+                                            <span className="header__cart-item-quantity">2</span>
+                                        </div>
+                                    </div>
+                                    <div className="header__cart-item-body">
+                                        <span className="header__cart-item-description">
+                                            Phân loại hàng: Bạc
+                                        </span>
+                                        <span className="header__cart-item-remove">
+                                            Xóa
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="header__cart-list-item">
+                                <img src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-space-select-2019_1_1_3_2_2.png" alt="" className="header__cart-img" />
+                                <div className="header__cart-item-info">
+                                    <div className="header__cart-item-head">
+                                        <h5 className="header__cart-item-name">Năm tháng ấy, vì một người nói thích màu
+                                        xanh mà đem lòng yêu luôn cả bầu trời
+                                        </h5>
+                                        <div className="header__cart-item-price-wrapper">
+                                            <span className="header__cart-item-price">24.500.000 ₫</span>
+                                            <span className="header__cart-item-multiply">x</span>
+                                            <span className="header__cart-item-quantity">2</span>
+                                        </div>
+                                    </div>
+                                    <div className="header__cart-item-body">
+                                        <span className="header__cart-item-description">
+                                            Phân loại hàng: Bạc
+                                        </span>
+                                        <span className="header__cart-item-remove">
+                                            Xóa
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="header__cart-list-item">
+                                <img src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-space-select-2019_1_1_3_2_2.png" alt="" className="header__cart-img" />
+                                <div className="header__cart-item-info">
+                                    <div className="header__cart-item-head">
+                                        <h5 className="header__cart-item-name">IPhone 11 VN/A)</h5>
+                                        <div className="header__cart-item-price-wrapper">
+                                            <span className="header__cart-item-price">24.500.000 ₫</span>
+                                            <span className="header__cart-item-multiply">x</span>
+                                            <span className="header__cart-item-quantity">2</span>
+                                        </div>
+                                    </div>
+                                    <div className="header__cart-item-body">
+                                        <span className="header__cart-item-description">
+                                            Phân loại hàng: Bạc
+                                        </span>
+                                        <span className="header__cart-item-remove">
+                                            Xóa
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="header__cart-list-item">
+                                <img src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-space-select-2019_1_1_3_2_2.png" alt="" className="header__cart-img" />
+                                <div className="header__cart-item-info">
+                                    <div className="header__cart-item-head">
+                                        <h5 className="header__cart-item-name">Năm tháng ấy, vì một người nói thích màu
+                                        xanh mà đem lòng yêu luôn cả bầu trời</h5>
+                                        <div className="header__cart-item-price-wrapper">
+                                            <span className="header__cart-item-price">24.500.000 ₫</span>
+                                            <span className="header__cart-item-multiply">x</span>
+                                            <span className="header__cart-item-quantity">2</span>
+                                        </div>
+                                    </div>
+                                    <div className="header__cart-item-body">
+                                        <span className="header__cart-item-description">
+                                            Phân loại hàng: Bạc
+                                        </span>
+                                        <span className="header__cart-item-remove">
+                                            Xóa
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="header__cart-list-item">
+                                <img src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-space-select-2019_1_1_3_2_2.png" alt="" className="header__cart-img" />
+                                <div className="header__cart-item-info">
+                                    <div className="header__cart-item-head">
+                                        <h5 className="header__cart-item-name">IPhone 11 VN/A)</h5>
+                                        <div className="header__cart-item-price-wrapper">
+                                            <span className="header__cart-item-price">24.500.000 ₫</span>
+                                            <span className="header__cart-item-multiply">x</span>
+                                            <span className="header__cart-item-quantity">2</span>
+                                        </div>
+                                    </div>
+                                    <div className="header__cart-item-body">
+                                        <span className="header__cart-item-description">
+                                            Phân loại hàng: Bạc
+                                        </span>
+                                        <span className="header__cart-item-remove">
+                                            Xóa
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="header__cart-list-item">
+                                <img src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/image/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone-11-pro-max-space-select-2019_1_1_3_2_2.png" alt="" className="header__cart-img" />
+                                <div className="header__cart-item-info">
+                                    <div className="header__cart-item-head">
+                                        <h5 className="header__cart-item-name">IPhone 11 VN/A)</h5>
+                                        <div className="header__cart-item-price-wrapper">
+                                            <span className="header__cart-item-price">24.500.000 ₫</span>
+                                            <span className="header__cart-item-multiply">x</span>
+                                            <span className="header__cart-item-quantity">2</span>
+                                        </div>
+                                    </div>
+                                    <div className="header__cart-item-body">
+                                        <span className="header__cart-item-description">
+                                            Phân loại hàng: Bạc
+                                        </span>
+                                        <span className="header__cart-item-remove">
+                                            Xóa
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="#" className="header__cart-view-cart btn btn--primary">Xem giỏ hàng</a>
                     </div>
                 </div>
             </div>

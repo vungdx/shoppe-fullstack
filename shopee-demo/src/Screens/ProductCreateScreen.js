@@ -1,34 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { saveProduct, listProducts, deleteProduct } from '../actions/productActions';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Footer from '../component/footer/Footer';
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../actions/userActions';
 
 
-function RegisterScreen(props) {
+function ProductCreateScreen(props) {
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const [id, setId] = useState('');
     const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repassword, setRepassword] = useState('');
-    const userRegister = useSelector(state => state.userRegister);
-    const { loading, userInfo, error } = userRegister;
+    const [oldPrice, setOldPrice] = useState('');
+    const [newPrice, setNewPrice] = useState('');
+    const [category, setCategory] = useState('');
+    const [image, setImage] = useState('');
+    const [originNation, setOriginNation] = useState('');
+    const [brand, setBrand] = useState('');
+    const [description, setDescription] = useState('');
+    const [countInStock, setCountInStock] = useState('');
+
+
+    const productList = useSelector(state => state.productList);
+    const productSave = useSelector(state => state.productSave);
+    const productDelete = useSelector(state => state.productDelete);
+    const { loading: loadingDelete, success: successDelete, error: errorDelete } = productDelete;
+    const { loading: loadingSave, success: successSave, error: errorSave } = productSave;
+    const { loading, products, error } = productList;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (userInfo) {
-            props.history.push("/")
+        if (successSave) {
+            setModalVisible(false)
         }
+        dispatch(listProducts())
         return () => {
         }
-    }, [userInfo])
+    }, [successSave, successDelete])
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(register(name, email, password))
+        dispatch(saveProduct({
+            _id: id,
+            name, oldPrice, newPrice,
+            category, image, brand,
+            originNation, description, countInStock
+        }))
     }
 
-    const goBack = () => {
-        props.history.push("/")
+    const openModal = (product) => {
+        setModalVisible(true);
+        setId(product._id)
+        setName(product.name)
+        setOldPrice(product.oldPrice)
+        setNewPrice(product.newPrice)
+        setImage(product.image)
+        setCategory(product.category)
+        setBrand(product.brand)
+        setOriginNation(product.originNation)
+        setDescription(product.description)
+        setCountInStock(product.countInStock)
+    }
+
+    const handleDeleteProduct = (product) => {
+        dispatch(deleteProduct(product._id));
     }
 
     return (
@@ -46,59 +80,108 @@ function RegisterScreen(props) {
                                 </g>
                             </svg>
                         </Link>
-                        <span className="header-with-search-sigin-title">Đăng ký</span>
+                        <span className="header-with-search-sigin-title">Admin Thêm sản phẩm</span>
                     </div>
                 </div >
             </header>
-            <div className="auth-form">
-                <form onSubmit={submitHandler} className="auth-form__container">
-                    <div className="auth-form__header">
-                        <h3 className="auth-form__heading">Đăng ký</h3>
-                        <Link to="/signin" className="auth-form__switch-btn">Đăng nhập</Link>
-                    </div>
-                    <div>
-                        {loading && <div>...loading</div>}
-                        {error && <div>{error}</div>}
-                    </div>
-                    <div className="auth-form__form">
-                        <div className="auth-form__group">
-                            <input type="text" name="name" id="name" onChange={e => setName(e.target.value)} className="auth-form__input" placeholder="Nhập username" />
-                        </div>
-                        <div className="auth-form__group">
-                            <input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} className="auth-form__input" placeholder="Nhập email" />
-                        </div>
-                        <div className="auth-form__group">
-                            <input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} className="auth-form__input" placeholder="Nhập password" />
-                        </div>
-                        <div className="auth-form__group">
-                            <input type="password" name="repassword" id="repassword" onChange={e => setRepassword(e.target.value)} className="auth-form__input" placeholder="Nhập lại password" />
-                        </div>
-                    </div>
-                    <div className="auth-form__aside">
-                        <p className="auth-form__policy">Bằng việc đăng ký, bạn đã đồng ý với Shopee về
-                                <a href className="policy-link">Điều khoản dịch vụ</a> &amp;
-                                <a href className="policy-link">Chính sách bảo mật</a>
-                        </p>
-                    </div>
-                    <div className="auth-form__controls">
-                        <button onClick={goBack} className="btn btn-back">TRỞ LẠI</button>
-                        <button type="submit" className="btn btn-register">ĐĂNG KÝ</button>
-                    </div>
-                </form>
-                <div className="auth-form__socials">
-                    <a href className="btn btn-smaller btn-with-icon facebook">
-                        <i className=" icon fab fa-facebook-square" />
-                        <span className="label">Kết nối với Facebook</span>
-                    </a>
-                    <a href className="btn btn-smaller btn-with-icon goggle">
-                        <i className="icon fab fa-google" />
-                        <span className="label">Kết nối với Google</span>
-                    </a>
+
+            <div className="content content-margined">
+                <div className="product-header">
+                    <button onClick={() => openModal({})} >Create products</button>
+                </div>
+                <div className="product-list">
+                    {
+                        modalVisible ?
+                            <div className="auth-form">
+                                <form onSubmit={submitHandler} className="auth-form__container">
+                                    <div className="auth-form__header">
+                                        <h3 className="auth-form__heading">{id ? "Cập nhật sản phẩm" : "Thêm sản phẩm"}</h3>
+                                    </div>
+                                    <div>
+                                        {loadingSave && <div>...loading</div>}
+                                        {errorSave && <div>{errorSave}</div>}
+                                    </div>
+                                    <div className="auth-form__form">
+                                        <div className="auth-form__group">
+                                            {/* Khi thực hiện chức năng Edit để bind dữ liệu của các sản phẩm mình cần edit, thì mới cần thêm thuộc tính value vào ô input */}
+                                            <input type="text" name="name" id="name" value={name} onChange={e => setName(e.target.value)} className="auth-form__input" placeholder="Nhập tên sản phẩm" />
+                                        </div>
+                                        <div className="auth-form__group">
+                                            <input type="number" name="oldPrice" id="oldPrice" value={oldPrice} onChange={e => setOldPrice(e.target.value)} className="auth-form__input" placeholder="Nhập giá cũ" />
+                                        </div>
+                                        <div className="auth-form__group">
+                                            <input type="number" name="newPrice" id="newPrice" value={newPrice} onChange={e => setNewPrice(e.target.value)} className="auth-form__input" placeholder="Nhập giá hiện tại" />
+                                        </div>
+                                        <div className="auth-form__group">
+                                            <input type="text" name="category" id="category" value={category} onChange={e => setCategory(e.target.value)} className="auth-form__input" placeholder="Nhập thể loại" />
+                                        </div>
+                                        <div className="auth-form__group">
+                                            <input type="text" name="image" id="image" value={image} onChange={e => setImage(e.target.value)} className="auth-form__input" placeholder="Nhập image" />
+                                        </div>
+                                        <div className="auth-form__group">
+                                            <input type="text" name="originNation" id="originNation" value={originNation} onChange={e => setOriginNation(e.target.value)} className="auth-form__input" placeholder="Nhập nước sản xuất" />
+                                        </div>
+                                        <div className="auth-form__group">
+                                            <input type="text" name="brand" id="brand" value={brand} onChange={e => setBrand(e.target.value)} className="auth-form__input" placeholder="Nhập nhãn hiệu " />
+                                        </div>
+                                        <div className="auth-form__group">
+                                            <input type="text" name="description" value={description} id="description" onChange={e => setDescription(e.target.value)} className="auth-form__input" placeholder="Nhập chi tiết sản phẩm" />
+                                        </div>
+                                        <div className="auth-form__group">
+                                            <input type="number" name="countInStock" value={countInStock} id="countInStock" onChange={e => setCountInStock(e.target.value)} className="auth-form__input" placeholder="Nhập số sản phẩm trong kho" />
+                                        </div>
+                                    </div>
+                                    <div className="auth-form__controls">
+                                        <button onClick={() => setModalVisible(false)} className="btn cancel ">Hủy bỏ</button>
+                                        <button type="submit" className="btn btn-register"> {id ? "Cập nhật sản phẩm" : "Thêm sản phẩm"}</button>
+                                    </div>
+                                </form>
+                            </div>
+                            :
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>OldPrice</th>
+                                        <th>NewPrice</th>
+                                        <th>Image</th>
+                                        <th>Category</th>
+                                        <th>Brand</th>
+                                        <th>OriginNation</th>
+                                        <th>Description</th>
+                                        <th>Count in stock</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        products.map(product =>
+                                            <tr key={product._id}>
+                                                <td>{product._id}</td>
+                                                <td>{product.name}</td>
+                                                <td>{product.oldPrice}</td>
+                                                <td>{product.newPrice}</td>
+                                                <td>{product.image}</td>
+                                                <td>{product.category}</td>
+                                                <td>{product.brand}</td>
+                                                <td>{product.originNation}</td>
+                                                <td>{product.description}</td>
+                                                <td>{product.countInStock}</td>
+                                                <td>
+                                                    <button onClick={() => openModal(product)} >Edit</button>
+                                                    <button onClick={() => handleDeleteProduct(product)} >Delete</button>
+                                                </td>
+                                            </tr>
+                                        )}
+                                </tbody>
+                            </table>
+                    }
+
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }
 
-export default RegisterScreen;
+export default ProductCreateScreen;

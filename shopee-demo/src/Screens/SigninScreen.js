@@ -26,6 +26,9 @@ function SigninScreen(props) {
         e.preventDefault();
         dispatch(signin(email, password))
     }
+    const goBack = () => {
+        props.history.push("/")
+    }
     return (
         <div className="SigninScreen">
             <header className="header">
@@ -64,7 +67,7 @@ function SigninScreen(props) {
                         </div>
                     </div>
                     <div className="auth-form__controls">
-                        <button className="btn btn-back">TRỞ LẠI</button>
+                        <button onClick={goBack} className="btn btn-back">TRỞ LẠI</button>
                         <button type="submit" className="btn btn-register">ĐĂNG NHẬP</button>
                     </div>
                 </form>
