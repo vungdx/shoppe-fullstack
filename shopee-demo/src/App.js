@@ -10,12 +10,17 @@ import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/SigninScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProductCreateScreen from './screens/ProductCreateScreen';
+import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 
 function App() {
   return (
     <BrowserRouter>
-
       <Route path="/productcreate" component={ProductCreateScreen}></Route>
+      <Route path="/placeorder" component={PlaceOrderScreen}></Route>
+      <Route path="/payment" component={PaymentScreen}></Route>
+      <Route path="/shipping" component={ShippingScreen}></Route>
       <Route path="/signin" component={SigninScreen}></Route>
       <Route path="/register" component={RegisterScreen}></Route>
       <Route path="/" exact={true} component={HomeScreen}></Route>

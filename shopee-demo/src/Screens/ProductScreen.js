@@ -89,21 +89,18 @@ function ProductScreen(props) {
                                             <div className="shipping-free">
                                                 <span className="shipping-free-label">Miễn phí vận chuyển</span>
                                                 <label className="shipping-free-condition" htmlFor="">Miễn phí vận chuyển khi đơn hàng đạt giá
-                                                trị tối thiểu
-                            </label>
+                                                trị tối thiểu</label>
                                             </div>
                                             <div className="shipping-to-wrapper">
                                                 <div className="shipping-to">
-                                                    <span className="shipping-to-label"><i className="shipping-icon fas fa-truck"></i> Vận
-                                        chuyển tới </span>
+                                                    <span className="shipping-to-label"><i className="shipping-icon fas fa-truck"></i> Vận chuyển tới </span>
                                                     <select className="shipping-to-address">
                                                         <option value="">Huyện Ba Vì, Hà Nội</option>
                                                         <option value="">TX.Sơn Tây, Hà Nội</option>
                                                     </select>
                                                 </div>
                                                 <div className="shipping-fee">
-                                                    <span className="shipping-fee-label"><i className="shipping-icon fas fa-dollar-sign"></i>Phí
-                                        vận chuyển</span>
+                                                    <span className="shipping-fee-label"><i className="shipping-icon fas fa-dollar-sign"></i>Phí vận chuyển</span>
                                                     <select className="shipping-fee-price">
                                                         <option value="">15.000đ</option>
                                                         <option value="">12.000đ</option>

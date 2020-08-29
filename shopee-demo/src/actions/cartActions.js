@@ -1,6 +1,6 @@
 import Axios from "axios";
 import Cookie from 'js-cookie'
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_UPDATE_QTY } from "../constants/cartContants";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_UPDATE_QTY, CART_SAVE_SHIPPING, CART_SAVE_PAYMENT } from "../constants/cartContants";
 
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
     try {
@@ -38,5 +38,20 @@ export const cartUpdateQty = (quantity, id) => async (dispatch) => {
     dispatch({
         type: CART_UPDATE_QTY,
         payload: { quantity, id }
+    })
+}
+
+
+export const saveShipping = (data) => async (dispatch) => {
+    dispatch({
+        type: CART_SAVE_SHIPPING,
+        payload: data
+    })
+}
+
+export const savePayment = (data) => async (dispatch) => {
+    dispatch({
+        type: CART_SAVE_PAYMENT,
+        payload: data
     })
 }

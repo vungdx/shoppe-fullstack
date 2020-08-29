@@ -1,39 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import Footer from '../component/footer/Footer';
-import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../actions/userActions';
+import { useDispatch } from 'react-redux';
+import { saveShipping, savePayment } from '../actions/cartActions';
+import { Link } from 'react-router-dom';
+import CheckoutStep from '../component/checkout/CheckoutStep';
 
 
-function RegisterScreen(props) {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [repassword, setRepassword] = useState('');
-    const userRegister = useSelector(state => state.userRegister);
-    const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
-    const { loading, userInfo, error } = userRegister;
+function PaymentScreen(props) {
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        if (userInfo) {
-            props.history.push(redirect)
-        }
-        return () => {
-        }
-    }, [userInfo])
+    const [paymentMethod, setPaymentMethod] = useState('')
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(register(name, email, password))
+        dispatch(savePayment({ paymentMethod }))
+        props.history.push('placeorder')
     }
-
-    const goBack = () => {
-        props.history.push("/")
-    }
-
     return (
-        <div className="RegisterScreen">
+        <div className="ShippingScreen">
             <header className="header">
                 <div className="grid">
                     <nav className="header__navbar">
@@ -52,54 +35,27 @@ function RegisterScreen(props) {
                 </div >
             </header>
             <div className="auth-form">
+                <CheckoutStep step1 step2 step3 />
                 <form onSubmit={submitHandler} className="auth-form__container">
                     <div className="auth-form__header">
-                        <h3 className="auth-form__heading">Đăng ký</h3>
-                        <Link to={redirect === '/' ? 'signin' : 'signin?redirect=' + redirect} className="auth-form__switch-btn">Đăng nhập</Link>
-                    </div>
-                    <div>
-                        {loading && <div>...loading</div>}
-                        {error && <div>{error}</div>}
+                        <h3 className="auth-form__heading">Phương thức thanh toán</h3>
                     </div>
                     <div className="auth-form__form">
                         <div className="auth-form__group">
-                            <input type="text" name="name" id="name" onChange={e => setName(e.target.value)} className="auth-form__input" placeholder="Nhập username" />
+                            <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod"
+                                onChange={e => setPaymentMethod(e.target.value)} />
+                            <label>Paypal</label>
                         </div>
-                        <div className="auth-form__group">
-                            <input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} className="auth-form__input" placeholder="Nhập email" />
-                        </div>
-                        <div className="auth-form__group">
-                            <input type="password" name="password" id="password" onChange={e => setPassword(e.target.value)} className="auth-form__input" placeholder="Nhập password" />
-                        </div>
-                        <div className="auth-form__group">
-                            <input type="password" name="repassword" id="repassword" onChange={e => setRepassword(e.target.value)} className="auth-form__input" placeholder="Nhập lại password" />
-                        </div>
-                    </div>
-                    <div className="auth-form__aside">
-                        <p className="auth-form__policy">Bằng việc đăng ký, bạn đã đồng ý với Shopee về
-                                <a href className="policy-link">Điều khoản dịch vụ</a> &amp;
-                                <a href className="policy-link">Chính sách bảo mật</a>
-                        </p>
                     </div>
                     <div className="auth-form__controls">
-                        <button onClick={goBack} className="btn btn-back">TRỞ LẠI</button>
-                        <button type="submit" className="btn btn-register">ĐĂNG KÝ</button>
+                        <button className="btn btn-back">TRỞ LẠI</button>
+                        <button type="submit" className="btn btn-register">Tiếp tục</button>
                     </div>
                 </form>
-                <div className="auth-form__socials">
-                    <a href className="btn btn-smaller btn-with-icon facebook">
-                        <i className=" icon fab fa-facebook-square" />
-                        <span className="label">Kết nối với Facebook</span>
-                    </a>
-                    <a href className="btn btn-smaller btn-with-icon goggle">
-                        <i className="icon fab fa-google" />
-                        <span className="label">Kết nối với Google</span>
-                    </a>
-                </div>
             </div>
             <Footer />
         </div>
     );
 }
 
-export default RegisterScreen;
+export default PaymentScreen;

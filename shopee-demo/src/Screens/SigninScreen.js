@@ -11,12 +11,12 @@ function SigninScreen(props) {
     const [password, setPassword] = useState('');
     const userSignin = useSelector(state => state.userSignin);
     const { loading, userInfo, error } = userSignin;
-    console.log(userInfo);
+    const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (userInfo) {
-            props.history.push("/")
+            props.history.push(redirect);
         }
         return () => {
         }
@@ -52,7 +52,7 @@ function SigninScreen(props) {
                 <form onSubmit={submitHandler} className="auth-form__container">
                     <div className="auth-form__header">
                         <h3 className="auth-form__heading">Đăng nhập</h3>
-                        <Link to="/register" className="auth-form__switch-btn">Đăng ký</Link>
+                        <Link to={redirect === '/' ? 'register' : 'register?redirect=' + redirect} className="auth-form__switch-btn">Đăng ký</Link>
                     </div>
                     <div>
                         {loading && <div>...loading</div>}

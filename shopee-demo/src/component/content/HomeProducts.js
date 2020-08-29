@@ -30,8 +30,8 @@ function HomeProducts(props) {
                 <div className="home-product">
                     <div className="grid__row">
                         {
-                            products.map(product =>
-                                <div key={product.id} className="grid__column-2-4">
+                            products.map((product, index) =>
+                                <div key={index} className="grid__column-2-4">
                                     <Link to={"/products/" + product.id} className="home-product-item">
                                         <div className="home-product-item__img" style={{ backgroundImage: `url(${product.image})` }}>
                                         </div>
