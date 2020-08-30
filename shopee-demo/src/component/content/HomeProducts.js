@@ -32,7 +32,7 @@ function HomeProducts(props) {
                         {
                             products.map((product, index) =>
                                 <div key={index} className="grid__column-2-4">
-                                    <Link to={"/products/" + product.id} className="home-product-item">
+                                    <Link to={"/products/" + product._id} className="home-product-item">
                                         <div className="home-product-item__img" style={{ backgroundImage: `url(${product.image})` }}>
                                         </div>
                                         <h4 className="home-product-item__name">{product.name}</h4>

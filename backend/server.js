@@ -19,8 +19,11 @@ const app = express();
 app.use(bodyParser.json());
 
 
+
+
 // Create user
 app.use("/api/users", userRoute);
+
 
 // Create product
 app.use("/api/products", productRoute);

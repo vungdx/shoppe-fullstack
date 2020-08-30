@@ -249,6 +249,7 @@
 .header__navbar-user:hover .header__navbar-user-menu{
   display:block;
   cursor: pointer;
+  
 }
 
 .header__navbar-user-img{
@@ -322,7 +323,8 @@
 }
 
 .header__navbar-user-item a:hover{
-  background-color: #f3f3f3;
+  background-color: #fafafa;
+  color: #00bfa5
 }
 
   
@@ -1659,7 +1661,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     width: 10rem;
-    height: 10rem;
+    height: 9rem;
 }
 
 .cart-item-content-checkout{
@@ -1715,7 +1717,7 @@
 }
 
 .auth-form {
-    width: 500px;
+    width: 555px;
     border: 1px solid #ccc;
     margin: 5rem 0rem;
     position: relative;
@@ -1866,7 +1868,7 @@ tbody>tr:nth-child(odd){
 .checkout-steps{
   display:flex;
   justify-content: space-between;
-  width:40rem;
+  width:45rem;
   margin: 1rem auto;
 }
 
@@ -1875,6 +1877,7 @@ tbody>tr:nth-child(odd){
   color:#c0c0c0;
   flex:1 1;
   padding-top:1rem;
+  text-align:center;
 }
 .checkout-steps >div.active{
   border-top: .3rem #f08000 solid;

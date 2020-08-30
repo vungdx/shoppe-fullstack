@@ -42,9 +42,24 @@ function PaymentScreen(props) {
                     </div>
                     <div className="auth-form__form">
                         <div className="auth-form__group">
-                            <input type="radio" name="paymentMethod" value="paypal" id="paymentMethod"
+                            <input type="radio" name="paymentMethod" value="Paypal" id="paymentMethod"
                                 onChange={e => setPaymentMethod(e.target.value)} />
                             <label>Paypal</label>
+                        </div>
+                        <div className="auth-form__group">
+                            <input type="radio" name="paymentMethod" value="Ví Airpay" id="paymentMethod"
+                                onChange={e => setPaymentMethod(e.target.value)} />
+                            <label>Ví Airpay</label>
+                        </div>
+                        <div className="auth-form__group">
+                            <input type="radio" name="paymentMethod" value="Thẻ tín dụng/Ghi nợ" id="paymentMethod"
+                                onChange={e => setPaymentMethod(e.target.value)} />
+                            <label>Thẻ tín dụng/Ghi nợ</label>
+                        </div>
+                        <div className="auth-form__group">
+                            <input type="radio" name="paymentMethod" value="Thanh toán tiền mặt" id="paymentMethod"
+                                onChange={e => setPaymentMethod(e.target.value)} />
+                            <label>Thanh toán khi nhận hàng</label>
                         </div>
                     </div>
                     <div className="auth-form__controls">

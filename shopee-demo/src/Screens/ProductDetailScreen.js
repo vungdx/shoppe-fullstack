@@ -5,7 +5,7 @@ import Navbar from '../component/header/Navbar';
 import Search from '../component/header/Search';
 import Footer from '../component/footer/Footer';
 
-function ProductScreen(props) {
+function ProductDetailScreen(props) {
 
     const productDetails = useSelector(state => state.productDetails);
     const { product, loading, error } = productDetails;
@@ -136,4 +136,4 @@ function ProductScreen(props) {
     );
 }
 
-export default ProductScreen;
+export default ProductDetailScreen;
