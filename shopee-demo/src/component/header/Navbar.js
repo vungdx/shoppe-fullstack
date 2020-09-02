@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { withCookies } from 'react-cookie';
 
@@ -12,8 +12,15 @@ function Navbar(props) {
     const handleLogout = () => {
         props.cookies.remove('userInfo');
         if (!props.cookies.userInfo) {
-            // props.history.push('/');
-            window.location.href = '/';
+            const { location } = props;
+            window.location.href = "/";
+            // console.log({ props });
+            // return <Redirect to={
+            //     {
+            //         pathname: `${location}`,
+            //         state: { from: location }
+            //     }
+            // } />
         }
     }
 

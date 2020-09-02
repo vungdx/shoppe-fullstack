@@ -6,7 +6,6 @@ import { signin } from '../actions/userActions';
 
 
 function SigninScreen(props) {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const userSignin = useSelector(state => state.userSignin);
@@ -25,6 +24,7 @@ function SigninScreen(props) {
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(signin(email, password))
+
     }
     const goBack = () => {
         props.history.push("/")
@@ -60,7 +60,7 @@ function SigninScreen(props) {
                     </div>
                     <div className="auth-form__form">
                         <div className="auth-form__group">
-                            <input type="email" name="email" id="email" onChange={e => setEmail(e.target.value)} className="auth-form__input" placeholder="Nhập email" />
+                            <input type="text" name="email" id="email" onChange={e => setEmail(e.target.value)} className="auth-form__input" placeholder="Nhập email" />
                         </div>
                         <div className="auth-form__group">
                             <input type="password" name="pasword" id="password" onChange={e => setPassword(e.target.value)} className="auth-form__input" placeholder="Nhập password" />

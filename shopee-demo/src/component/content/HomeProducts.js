@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Pagination from '../footer/Pagination';
 import { listProducts } from '../../actions/productActions';
 
+import * as ReactBootstrap from "react-bootstrap";
+
 function HomeProducts(props) {
     const productList = useSelector(state => state.productList);
     const { products, loading, error } = productList;
@@ -24,7 +26,7 @@ function HomeProducts(props) {
         return result;
     }
     return (
-        loading ? <div>Loading...</div>
+        loading ? <ReactBootstrap.Spinner animation="border" />
             : error ? <div>{error}</div>
                 :
                 <div className="home-product">

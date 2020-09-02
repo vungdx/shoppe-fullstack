@@ -13,20 +13,23 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import ProductDetailScreen from './screens/ProductDetailScreen';
+import AuthRoute from './component/authentication/auth';
+import Cookies from 'js-cookie';
 
 function App() {
+  const [authen, setAuthen] = useState(Cookies.get('userInfo'))
+
   return (
     <BrowserRouter>
       <Route path="/productcreate" component={ProductCreateScreen}></Route>
       <Route path="/placeorder" component={PlaceOrderScreen}></Route>
       <Route path="/payment" component={PaymentScreen}></Route>
       <Route path="/shipping" component={ShippingScreen}></Route>
-      <Route path="/signin" component={SigninScreen}></Route>
+      <Route path="/signin" component={SigninScreen} ></Route>
       <Route path="/register" component={RegisterScreen}></Route>
       <Route path="/" exact={true} component={HomeScreen}></Route>
       <Route path="/products/:id" component={ProductDetailScreen}></Route>
       <Route path="/cart/:id?" component={CartScreen}></Route>
-
     </BrowserRouter>
   );
 }

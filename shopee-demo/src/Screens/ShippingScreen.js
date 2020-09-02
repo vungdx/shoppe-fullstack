@@ -42,7 +42,7 @@ function ShippingScreen(props) {
                 <CheckoutStep step1 step2 />
                 <form onSubmit={submitHandler} className="auth-form__container">
                     <div className="auth-form__header">
-                        <h3 className="auth-form__heading">Vận chuyển</h3>
+                        <h3 className="auth-form__heading">Giao hàng</h3>
                     </div>
                     <div className="auth-form__form">
                         <div className="auth-form__group">

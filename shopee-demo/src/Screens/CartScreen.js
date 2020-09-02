@@ -9,7 +9,6 @@ import Search from '../component/header/Search';
 
 
 function CartScreen(props) {
-
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
     const productId = props.match.params.id;

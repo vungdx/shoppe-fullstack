@@ -1,35 +1,31 @@
 import express from 'express';
 import User from '../models/userModel'
 import { getToken } from '../util';
-
+const { registerValidation, signinValidation } = require("./../validation")
+const bcrypt = require("bcryptjs");
 const router = express.Router();
-
-
-// Đăng nhập
-router.post("/signin", async (req, res) => {
-    const signinUser = await User.findOne({
-        email: req.body.email,
-        password: req.body.password
-    });
-    if (signinUser) {
-        res.send({
-            _id: signinUser.id,
-            name: signinUser.name,
-            email: signinUser.email,
-            isAdmin: signinUser.isAdmin,
-            token: getToken(signinUser)
-        })
-    } else {
-        res.status(401).send({ message: 'Invalid Email or Password.' });
-    }
-})
 
 // Đăng ký
 router.post("/register", async (req, res) => {
+    // Validate data form
+    const { error } = registerValidation(req.body);
+    if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+    }
+
+    // Checking user existing in db
+    const emailExist = await User.findOne({ email: req.body.email });
+    if (emailExist) return res.status(400).json({ message: "Email đã được sử dụng! Vui lòng đăng ký bằng tài khoản email khác" })
+
+    // Hashed password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const hashedRepassword = await bcrypt.hash(req.body.repassword, salt);
     const user = new User({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: hashedPassword,
+        repassword: hashedRepassword,
     })
     const newUser = await user.save();
     if (newUser) {
@@ -45,6 +41,33 @@ router.post("/register", async (req, res) => {
     }
 })
 
+// Đăng nhập
+router.post("/signin", async (req, res) => {
+    //Validate data form
+    const { error } = signinValidation(req.body);
+    if (error) {
+        return res.status(400).json({ message: error.details[0].message });
+    }
+    // Check email correct
+    const signinUser = await User.findOne({ email: req.body.email })
+    if (!signinUser) {
+        return res.status(400).json({ message: 'Email hoặc Mật khẩu không đúng' });
+    }
+    // Check password correct
+    const validPassword = await bcrypt.compare(req.body.password, signinUser.password)
+    if (!validPassword) {
+        return res.status(400).json({ message: "Email hoặc Mật khẩu không đúng" })
+    }
+    if (signinUser) {
+        res.send({
+            _id: signinUser.id,
+            name: signinUser.name,
+            email: signinUser.email,
+            isAdmin: signinUser.isAdmin,
+            token: getToken(signinUser)
+        })
+    }
+})
 
 // Create 1 user is Admin => isAdmin :true, còn những thằng user khác đăng ký thì isAdmin:false
 router.get("/createAdmin", async (req, res) => {
