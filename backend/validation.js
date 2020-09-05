@@ -7,7 +7,7 @@ const registerValidation = (data) => {
       // Muốn biết type loại gì, thì sang userRoute bỏ message đi xem cả lỗi
       "string.alphanum": `Username không chứa ký tự đặc biệt`,
       "string.min": `Username chứa ít nhất 6 ký tự`,
-      "string.empty": `Username không được để trống nhé anh`,
+      "string.empty": `Username không được để trống`,
     }),
     email: Joi.string().required().email().messages({
       "string.email": `Email không hợp lệ`,
