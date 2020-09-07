@@ -8,8 +8,6 @@ import Footer from '../component/footer/Footer';
 function ProductDetailScreen(props) {
     const productDetails = useSelector(state => state.productDetails);
     const { product, loading, error } = productDetails;
-    const userSignin = useSelector(state => state.userSignin);
-    const { userInfo } = userSignin;
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(detailsProduct(props.match.params.id))
@@ -42,10 +40,16 @@ function ProductDetailScreen(props) {
             setQty(qty - 1);
         }
     }
-    // ADD to cart
-    const handleAddToCart = () => {
+    // buy
+    const handleBuy = () => {
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
     }
+    // ADD to cart
+    const handleAddToCart = () => {
+        console.log("Đi vào đây");
+
+    }
+
     return (
         <div className="ProductScreen">
             <header className="header">
@@ -93,15 +97,22 @@ function ProductDetailScreen(props) {
                                                 <div className="shipping-to">
                                                     <span className="shipping-to-label"><i className="shipping-icon fas fa-truck"></i> Vận chuyển tới </span>
                                                     <select className="shipping-to-address">
-                                                        <option value="">Huyện Ba Vì, Hà Nội</option>
+                                                        <option value="">H.Ba Vì, Hà Nội</option>
                                                         <option value="">TX.Sơn Tây, Hà Nội</option>
+                                                        <option value="">Q.Đống Đa, Hà Nội</option>
+                                                        <option value="">Q.Tây Hồ, Hà Nội</option>
+                                                        <option value="">Q.Cầu Giấy, Hà Nội</option>
+                                                        <option value="">Q.Hà Đông, Hà Nội</option>
                                                     </select>
                                                 </div>
                                                 <div className="shipping-fee">
                                                     <span className="shipping-fee-label"><i className="shipping-icon fas fa-dollar-sign"></i>Phí vận chuyển</span>
                                                     <select className="shipping-fee-price">
-                                                        <option value="">15.000đ</option>
-                                                        <option value="">12.000đ</option>
+                                                        <option value="">35.000đ</option>
+                                                        <option value="">32.000đ</option>
+                                                        <option value="">22.000đ</option>
+                                                        <option value="">28.000đ</option>
+                                                        <option value="">30.000đ</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -121,7 +132,7 @@ function ProductDetailScreen(props) {
                                             : <button disabled className="btn btn--primary add-to-cart out-of-stock "> <i className="fas fa-shopping-cart"></i>&nbsp; Hết hàng</button>
                                     }
                                     {
-                                        product.countInStock > 0 ? <button className="btn btn--primary">Mua ngay</button>
+                                        product.countInStock > 0 ? <button onClick={handleBuy} className="btn btn--primary">Mua ngay</button>
                                             : ""
                                     }
                                 </div>
