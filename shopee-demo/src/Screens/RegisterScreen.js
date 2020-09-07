@@ -11,6 +11,7 @@ function RegisterScreen(props) {
     const [password, setPassword] = useState('');
     const [repassword, setRepassword] = useState('');
     const userRegister = useSelector(state => state.userRegister);
+    // Nếu mà đăng ký thành công thì sẽ không bao giờ vào được router register
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
     const { loading, userInfo, error } = userRegister;
     const dispatch = useDispatch();

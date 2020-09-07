@@ -11,11 +11,10 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import ProductDetailScreen from "./screens/ProductDetailScreen";
-import AuthRoute from "./component/authentication/auth";
 import Cookies from "js-cookie";
+import ProtectedRoute from "./component/auth/ProtectedRoute";
 
 function App() {
-  const [authen, setAuthen] = useState(Cookies.get("userInfo"));
 
   return (
     <BrowserRouter>
@@ -27,8 +26,8 @@ function App() {
       <Route path="/register" component={RegisterScreen}></Route>
       <Route path="/" exact={true} component={HomeScreen}></Route>
       <Route path="/products/:id" component={ProductDetailScreen}></Route>
-      <Route path="/cart/:id?" component={CartScreen}></Route>
-    </BrowserRouter>
+      <ProtectedRoute path="/cart/:id?" component={CartScreen}></ProtectedRoute>
+    </BrowserRouter >
   );
 }
 

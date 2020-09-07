@@ -6,17 +6,14 @@ import Search from '../component/header/Search';
 import Footer from '../component/footer/Footer';
 
 function ProductDetailScreen(props) {
-
     const productDetails = useSelector(state => state.productDetails);
     const { product, loading, error } = productDetails;
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(detailsProduct(props.match.params.id))
     }, [])
-
     // Show rating star
     const showRatingStar = (rating) => {
         let result = [];
@@ -45,12 +42,8 @@ function ProductDetailScreen(props) {
             setQty(qty - 1);
         }
     }
-
     // ADD to cart
     const handleAddToCart = () => {
-        if (userInfo === null) {
-            props.history.push("/login");
-        }
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
     }
     return (

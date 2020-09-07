@@ -10,6 +10,7 @@ function SigninScreen(props) {
     const [password, setPassword] = useState('');
     const userSignin = useSelector(state => state.userSignin);
     const { loading, userInfo, error } = userSignin;
+    // Nếu mà đăng nhập thành công thì sẽ không bao giờ vào được router signin
     const redirect = props.location.search ? props.location.search.split("=")[1] : '/';
     const dispatch = useDispatch();
 
@@ -23,7 +24,7 @@ function SigninScreen(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(signin(email, password))
+        dispatch(signin(email, password));
 
     }
     const goBack = () => {

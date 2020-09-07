@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { saveShipping } from '../actions/cartActions';
 import { Link } from 'react-router-dom';
 import CheckoutStep from '../component/checkout/CheckoutStep';
+import Navbar from '../component/header/Navbar';
 
 
 function ShippingScreen(props) {
@@ -23,8 +24,7 @@ function ShippingScreen(props) {
         <div className="ShippingScreen">
             <header className="header">
                 <div className="grid">
-                    <nav className="header__navbar">
-                    </nav>
+                    <Navbar />
                     <div className="header-with-search header-with-search-signin">
                         <Link to="/" className="header__logo">
                             <svg className="header__logo-img" viewBox="0 0 192 65">
@@ -34,7 +34,7 @@ function ShippingScreen(props) {
                                 </g>
                             </svg>
                         </Link>
-                        <span className="header-with-search-sigin-title">Đăng ký</span>
+                        <span className="header-with-search-sigin-title">Shipping</span>
                     </div>
                 </div >
             </header>
