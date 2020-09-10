@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Pagination from '../footer/Pagination';
 import { listProducts } from '../../actions/productActions';
-
-import * as ReactBootstrap from "react-bootstrap";
+import { useHistory } from 'react-router-dom'
 
 function HomeProducts(props) {
     const productList = useSelector(state => state.productList);
     const { products, loading, error } = productList;
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(listProducts());
@@ -25,8 +25,14 @@ function HomeProducts(props) {
         }
         return result;
     }
+
+    // const goToDetail = (id) => {
+    //     console.log({ id, props });
+    //     history.push(`/products/${id}`)
+    // }
+
     return (
-        loading ? <ReactBootstrap.Spinner animation="border" />
+        loading ? <div className="loader"></div>
             : error ? <div>{error}</div>
                 :
                 <div className="home-product">
@@ -70,8 +76,8 @@ function HomeProducts(props) {
                         }
                     </div>
                     {/* Pagination */}
-                    <Pagination />
-                </div>
+                    < Pagination />
+                </div >
     );
 }
 

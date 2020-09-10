@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../component/footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { signin } from '../actions/userActions';
+import Cookies from "js-cookie";
 
 
 function SigninScreen(props) {
@@ -16,18 +17,19 @@ function SigninScreen(props) {
 
     useEffect(() => {
         if (userInfo) {
-            props.history.push(redirect);
+            props.history.push("/");
         }
         return () => {
         }
     }, [userInfo])
 
+
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(signin(email, password));
-
     }
     const goBack = () => {
+        const { history } = props
         props.history.push("/")
     }
     return (
@@ -56,7 +58,7 @@ function SigninScreen(props) {
                         <Link to={redirect === '/' ? 'register' : 'register?redirect=' + redirect} className="auth-form__switch-btn">Đăng ký</Link>
                     </div>
                     <div>
-                        {loading && <div>...loading</div>}
+                        {loading && <div className="loader"></div>}
                         {error && <div>{error}</div>}
                     </div>
                     <div className="auth-form__form">
@@ -69,7 +71,7 @@ function SigninScreen(props) {
                     </div>
                     <div className="auth-form__controls">
                         <button onClick={goBack} className="btn btn-back">TRỞ LẠI</button>
-                        <button type="submit" className="btn btn-register">ĐĂNG NHẬP</button>
+                        <button className="btn btn-register">ĐĂNG NHẬP</button>
                     </div>
                 </form>
                 <div className="auth-form__socials">

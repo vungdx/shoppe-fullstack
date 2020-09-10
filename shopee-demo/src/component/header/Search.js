@@ -63,7 +63,7 @@ function Search(props) {
                     {
                         cartItems.length === 0 ?
                             <div className="header__cart-list no-cart">
-                                <img src="./images/no-cart.jpeg" alt="no-cart" className="header__cart-img-no-cart" />
+                                <img src="../images/no-cart.jpeg" alt="no-cart" className="header__cart-img-no-cart" />
                                 <span className="header__cart-list-label">Chưa có sản phẩm</span>
                             </div>
                             :

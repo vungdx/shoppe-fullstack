@@ -1,4 +1,4 @@
-import { USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL } from "../constants/userContants";
+import { USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, CLEAR_SIGNIN } from "../constants/userContants";
 
 export const userSigninReducer = (state = {}, action) => {
     switch (action.type) {
@@ -14,6 +14,8 @@ export const userSigninReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload
             }
+        case CLEAR_SIGNIN:
+            return {}
         default: return state;
     }
 }
@@ -32,6 +34,8 @@ export const userRegisterReducer = (state = {}, action) => {
                 loading: false,
                 error: action.payload
             }
+        case CLEAR_SIGNIN:
+            return {}
         default: return state;
     }
 }

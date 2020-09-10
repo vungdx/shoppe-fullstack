@@ -70,20 +70,21 @@ router.post("/signin", async (req, res) => {
 })
 
 // Create 1 user is Admin => isAdmin :true, còn những thằng user khác đăng ký thì isAdmin:false
-router.get("/createAdmin", async (req, res) => {
-    try {
-        const user = new User({
-            name: 'vungdo',
-            email: 'vungdoxuankthd@gmail.com',
-            password: '123456',
-            isAdmin: true
-        });
-        const newUser = await user.save();
-        res.send(newUser)
-    } catch (error) {
-        res.send({ msg: error.message })
-    }
-})
+// router.get("/createAdmin", async (req, res) => {
+//     try {
+//         const user = new User({
+//             name: 'vungdo',
+//             email: 'vungdoxuankthd@gmail.com',
+//             password: '123456',
+//             repassword: '123456',
+//             isAdmin: true
+//         });
+//         const newUser = await user.save();
+//         res.send(newUser)
+//     } catch (error) {
+//         res.send({ msg: error.message })
+//     }
+// })
 
 
 export default router;

@@ -49,14 +49,14 @@ export const saveProduct = (product) => async (dispatch, getState) => {
         if (!product._id) {
             const { data } = await Axios.post("/api/products", product, {
                 headers: {
-                    'Authorization': 'Bearer' + userInfo.token
+                    'Authorization': 'Bearer ' + userInfo.token
                 }
             })
             dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data })
         } else {
             const { data } = await Axios.put("/api/products/" + product._id, product, {
                 headers: {
-                    'Authorization': 'Bearer' + userInfo.token
+                    'Authorization': 'Bearer ' + userInfo.token
                 }
             })
             dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data })
@@ -75,7 +75,7 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
         dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
         const { data } = await Axios.delete("/api/products/" + productId, {
             headers: {
-                'Authorization': 'Bearer' + userInfo.token
+                'Authorization': 'Bearer ' + userInfo.token
             }
         })
         dispatch({ type: PRODUCT_DELETE_SUCCESS, payload: data, success: true })
