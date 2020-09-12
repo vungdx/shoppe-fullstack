@@ -34,7 +34,7 @@ function ShippingScreen(props) {
                                 </g>
                             </svg>
                         </Link>
-                        <span className="header-with-search-sigin-title">Shipping</span>
+                        <div className="header-with-search-sigin-title">Shipping</div>
                     </div>
                 </div >
             </header>

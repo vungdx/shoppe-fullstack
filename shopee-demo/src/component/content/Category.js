@@ -13,10 +13,10 @@ function Category(props) {
                     <a className="category-item__link">Điện thoại</a>
                 </li>
                 <li className="category-item">
-                    <a className="category-item__link">Trang điểm mũi</a>
+                    <a className="category-item__link">Máy tính</a>
                 </li>
                 <li className="category-item">
-                    <a className="category-item__link">Trang điểm miệng</a>
+                    <a className="category-item__link">Thiết bị gia dụng</a>
                 </li>
             </ul>
         </nav>

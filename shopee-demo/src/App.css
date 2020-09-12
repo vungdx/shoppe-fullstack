@@ -1888,11 +1888,15 @@
 
 /* Sign in header */
 .header-with-search-sigin-title{
-  font-size: 2.6rem;
-  font-weight: 500;
-  color: var(--black-color);
-  display: block;
-  width: 100%;
+    font-size: 2.6rem;
+    font-weight: 500;
+    color: var(--white-color);
+    width: 50px;
+    width: 100%;
+    position: relative;
+    top: 5px;
+    border-left: 2px solid var(--white-color);
+    padding: 0px 16px;
 }
 .header-with-search .header-with-search-signin{
   display: flex;
@@ -2003,6 +2007,10 @@ tbody>tr:nth-child(odd){
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+/* Style for shipping , payment title */
+
 
 
 

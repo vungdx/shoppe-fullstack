@@ -4,13 +4,13 @@ import { addToCart, removeItemCart, cartUpdateQty } from '../actions/cartActions
 import { Link } from 'react-router-dom';
 import Navbar from '../component/header/Navbar';
 import Footer from '../component/footer/Footer';
-import Search from '../component/header/Search';
 import CheckoutStep from '../component/checkout/CheckoutStep';
 
 
 
 function PlaceOrderScreen(props) {
     const cart = useSelector(state => state.cart);
+
     const { cartItems, shipping, payment, } = cart;
     const productId = props.match.params.id;
     if (!shipping.address) {
@@ -40,6 +40,11 @@ function PlaceOrderScreen(props) {
         dispatch(cartUpdateQty(value, id));
     }
 
+    // handleConfirmBuy
+    const handleConfirmBuy = () => {
+        alert("Đơn hàng của bạn đặt hàng thành công");
+    }
+
     return (
         <div className="PlaceOrder">
             <header className="header">
@@ -54,7 +59,7 @@ function PlaceOrderScreen(props) {
                                 </g>
                             </svg>
                         </Link>
-                        <span className="header-with-search-sigin-title">Payment</span>
+                        <span className="header-with-search-sigin-title">Place Order</span>
                     </div>
                 </div >
             </header>
@@ -163,7 +168,7 @@ function PlaceOrderScreen(props) {
                                                         <span className="cart-item-content-left-price">{item.newPrice * item.qty} $</span>
                                                     </div>
                                                     <div className="grid__column-6-4">
-                                                        <button className="cart-item-content-left-action">$??</button>
+                                                        <button className="cart-item-content-left-action">2$</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -174,7 +179,7 @@ function PlaceOrderScreen(props) {
                         <div className="cart-item-content-checkout">
                             <span className="cart-item-content-total-price-title">Tổng tiền hàng ({cartItems.length > 0 ? cartItems.map(x => x.qty).reduce((x, y) => x + y) + ' sản phẩm' : 0 + ' sản phẩm'}) :</span>
                             <span className="cart-item-content-total-price-num">{cartItems.length > 0 ? cartItems.map(x => x.qty * x.newPrice).reduce((x, y) => x + y) : 0} $</span>
-                            <button className="btn btn--primary">Xác nhận đặt hàng</button>
+                            <button onClick={handleConfirmBuy} className="btn btn--primary">Xác nhận đặt hàng</button>
                         </div>
                     </div >
                 </div>
