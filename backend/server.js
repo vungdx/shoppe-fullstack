@@ -1,32 +1,33 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import config from './config';
-import mongoose from 'mongoose';
-import userRoute from './routes/userRoute';
-import data from './data'
-import productRoute from './routes/productRoute'
-import bodyParser from 'body-parser';
+import express from "express";
+import dotenv from "dotenv";
+import config from "./config";
+import mongoose from "mongoose";
+import userRoute from "./routes/userRoute";
+import data from "./data";
+import productRoute from "./routes/productRoute";
+import bodyParser from "body-parser";
+import orderRouter from "./routes/orderRoute";
 
 dotenv.config();
 const mongodbUrl = config.MONGODB_URL;
-mongoose.connect(mongodbUrl, {
+mongoose
+  .connect(mongodbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
-}).catch(error => console.log(error.reason));
+    useCreateIndex: true,
+  })
+  .catch((error) => console.log(error.reason));
 
 const app = express();
 app.use(bodyParser.json());
 
-
-
-
 // Create user
 app.use("/api/users", userRoute);
 
-
 // Create product
 app.use("/api/products", productRoute);
+
+// app.use("/api/orders", orderRouter);
 
 // get one product detail
 // app.get("/api/products/:id", (req, res) => {
@@ -44,5 +45,5 @@ app.use("/api/products", productRoute);
 //     res.send(data.products)
 // })
 app.listen(5000, () => {
-    console.log("Server started at http://localhost:5000")
-})
+  console.log("Server started at http://localhost:5000");
+});
